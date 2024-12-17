@@ -16,3 +16,22 @@ Example 2:
 Input: nums = [5], k = 1
 Output: 5.00000
 """
+
+# Optimal
+# O(n) time
+# O(1) space .... not O(k) apparently for the array slicing
+# Fixed window sliding window problem (HINT: precompute something then slide)
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        
+        sum_window = sum(nums[:k])
+        max_avg = sum_window/k
+
+        print(sum_window)
+        for i in range(k, len(nums)):
+            sum_window = sum_window - nums[i - k] + nums[i]
+            max_avg = max(max_avg, sum_window/k)
+            print(sum_window, sum_window/k)
+
+
+        return max_avg
