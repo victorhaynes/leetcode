@@ -24,7 +24,8 @@ Output: 2
 Explanation: You must delete one element.
 
 """
-
+# Optimal
+# Time O(n) = O(n) for loop and amoritized O(n) for while loop inside of outer loop
 class Solution:
     def longestSubarray(self, nums: List[int]) -> int:
         max_len = 0 # problem asks for a max, we need to initialize a max
