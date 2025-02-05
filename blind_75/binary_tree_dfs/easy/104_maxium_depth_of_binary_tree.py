@@ -1,6 +1,5 @@
 from typing import Optional, TreeNode
-# Time O(n)
-# Space O(n) or O(logn) if the tree is balanced
+
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -10,52 +9,25 @@ from typing import Optional, TreeNode
 #         self.right = right
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        # # DFS - RECURSION (in-order)
-        # # DFS - RECURSION (in-order)
-        # # DFS - RECURSION (in-order)
-        # # Base Case: if the current node (root) is empty, return 0 depth
-        if not root:
+        if not root: # if no tree, depth is 0 don't check anything
             return 0
 
-        # Else - Recursive case:
-        left_depth = self.maxDepth(root.left)
-        right_depth = self.maxDepth(root.right)
-        return 1 + max(left_depth, right_depth)
 
-        # # DFS - ITERATIVE (pre-ordered)
-        # # DFS - ITERATIVE (pre-ordered)
-        # # DFS - ITERATIVE (pre-ordered)
-        # if not root:
-        #     return 0
+        max_depth = 1
 
-        # stack = [[root, 1]]
-        # result = 1
-        # while stack:
-        #     node, depth = stack.pop()
-        #     if node:
-        #         result = max(result, depth)
-        #         stack.append([node.left, depth + 1]) # may/can add null nodes. If it is null the above if will prevent work
-        #         stack.append([node.right, depth + 1])
+        def dfs(node, current_depth):
+            nonlocal max_depth
 
-        # return result
+            if not node: # base case
+                return
+
+            if node.left or node.right:
+                current_depth += 1
+                max_depth = max(current_depth, max_depth)
+
+            dfs(node.left, current_depth)
+            dfs(node.right, current_depth)
 
 
-        # # BFS - "level order traversal" - uses a dequeue normally
-        # # BFS - "level order traversal" - uses a dequeue normally
-        # # BFS - "level order traversal" - uses a dequeue normally
-        # # logic: add the root to a queue then replace it with it's children 
-        # if not root:
-        #     return 0
-
-        # level = 0
-        # queue = deque([root])
-        # while queue:
-        #     for i in range(len(queue)):
-        #         node = queue.popleft()
-        #         if node.left:
-        #             queue.append(node.left)
-        #         if node.right:
-        #             queue.append(node.right)
-        #     level += 1
-
-        # return level
+        dfs(root, 1)
+        return max_depth
