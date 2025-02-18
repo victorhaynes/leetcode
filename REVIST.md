@@ -5,3 +5,7 @@
 5. 35 - Binary search medium / 1st / last occurence
 206 - reverse linked list recursively
 DFS in general
+436 - DFS path sum iii (hard)
+1372 - DFS longest zigzag path in binary tree
+450 = delete node in a BST ... try recursion
+841 keys and rooms
