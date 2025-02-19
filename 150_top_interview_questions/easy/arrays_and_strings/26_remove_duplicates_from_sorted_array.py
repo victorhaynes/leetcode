@@ -23,25 +23,28 @@ for (int i = 0; i < k; i++) {
 If all assertions pass, then your solution will be accepted.
 """
 
-# Take away: duplicates likely mean hashmap or a set is involved
 
-# First create a hashmap that maps {nubmer: index}
-# hashmap automatically does not allow duplications
-# then iterate through nums and update its values
+# Time O(n) -> loop through once
+# Space O(1) -> constant space
 
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        hashmap = {}
-        for i,n in enumerate(nums):
-            hashmap[n] = i
-        print(hashmap, "hashmap")
-        
-        keys = list(hashmap.keys())
-        for i, n in enumerate(nums):
-            try:
-                nums[i] = keys[i]
-            except IndexError:
-                pass
+        if len(nums) == 1:
+            return 1
 
-        nums = nums[:len(keys)]
-        return len(nums)
+        # Two pointers, LEFT and RIGHT
+        # Left keeps track of the modifcation index, right is what goes through the entire array and progresses the iteration
+
+        left = 1
+        for right in range(1, len(nums)):
+            if nums[right] != nums[right-1]:
+                nums[left] = nums[right]
+                left += 1
+
+
+        return left
+
+        
+            
+
+            
