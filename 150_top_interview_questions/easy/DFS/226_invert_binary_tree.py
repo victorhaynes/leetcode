@@ -12,7 +12,7 @@ from typing import Optional, TreeNode
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         
-        # no flag needed for this problem
+        # no flag needed for this problem, because we must go through the entire tree
 
         def dfs(node):
 

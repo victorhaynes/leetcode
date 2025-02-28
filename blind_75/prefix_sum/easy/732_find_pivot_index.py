@@ -1,3 +1,4 @@
+from typing import List
 """
 URL: https://leetcode.com/problems/find-pivot-index/description/?envType=study-plan-v2&envId=leetcode-75
 Given an array of integers nums, calculate the pivot index of this array.
@@ -31,4 +32,28 @@ Left sum = 0 (no elements to the left of index 0)
 Right sum = nums[1] + nums[2] = 1 + -1 = 0
 
 """
+# Opitmal
+# Time O(n)
+# space O(1)
+# key here is the left_sum is 0 at first and the right_sum is the normal sum - nums[0]
+# then iterate through and update the left & right sums until they are equal
+class Solution:
+    def pivotIndex(self, nums: List[int]) -> int:
+        total = sum(nums)
+        left_sum = 0
+        right_sum = total - nums[0]
 
+        if left_sum == right_sum:
+            return 0
+
+        for i, n in enumerate(nums):
+            if i == 0: # skip 1st index because we already defined the needed above
+                continue
+            left_sum += nums[i-1]
+            right_sum -= n
+
+            if left_sum == right_sum:
+                return i
+
+        return -1
+            
